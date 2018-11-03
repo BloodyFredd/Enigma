@@ -6,7 +6,9 @@ public class Translator extends Substitutor {
 	private List<Character> permutation;
 	
 	Translator(List<Character> permutation){
+		
 		this.permutation = permutation;
+		
 	}
 	
 	@Override
