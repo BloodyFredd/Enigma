@@ -20,7 +20,7 @@ public class Reflector extends Translator {
 	}
 
 	@Override
-	public char reverseTranslataion(char permutation) {
+	public char reverseTranslation(char permutation) {
 
 		return this.forwardTranslation(permutation);
 		

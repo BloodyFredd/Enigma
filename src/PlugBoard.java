@@ -40,10 +40,4 @@ public class PlugBoard extends Translator {
 		
 	}
 
-	@Override
-	public char reverseTranslataion(char permutation) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

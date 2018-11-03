@@ -19,7 +19,7 @@ public class Translator extends Substitutor {
 	}
 
 	@Override
-	public char reverseTranslataion(char permutation) {
+	public char reverseTranslation(char permutation) {
 
 		return (char) ((int)'A' + this.permutation.get(Character.toUpperCase(permutation)));
 		
