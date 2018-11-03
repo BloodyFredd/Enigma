@@ -13,14 +13,14 @@ public abstract class Substitutor {
 
     public int leftCircularShift(int letter, int numOfShifts){
     	
-        return this.rightCircularShift(letter ,26 - numOfShifts);
+        return this.rightCircularShift(letter ,numOfLetters - numOfShifts);
         
     }
 
     public int rightCircularShift(int letter, int numOfShifts){
     	
-        if (numOfShifts < 0) return (letter + 26 + numOfShifts) % 26;
-        else return (letter + numOfShifts) % 26;
+        if (numOfShifts < 0) return (letter + numOfLetters + numOfShifts) % numOfLetters;
+        else return (letter + numOfShifts) % numOfLetters;
         		
     }
     
