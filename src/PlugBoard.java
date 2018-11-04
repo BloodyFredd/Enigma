@@ -20,22 +20,26 @@ public class PlugBoard extends Translator {
 		}
 		
 		config = st.toString();
-		this.configuration = config.trim().split("\\s+");
-		for(String pair: this.configuration){
+		if(config != null) 
+			this.configuration = config.trim().split("\\s+");
+		
+		if(this.configuration.length != 1) {
+			for(String pair: this.configuration){
 			
 			this.dictionary.put((pair.charAt(0)), pair.charAt(1));
 			this.dictionary.put((pair.charAt(1)), pair.charAt(0));
-
+			
+			}
 		}
+		
 		
 	}
 	
 	@Override
 	public char forwardTranslation(char permutation) {
 		
-		if(dictionary.containsKey(permutation))
+		if(dictionary.containsKey(permutation)) 
 			return this.dictionary.get(permutation);
-		
 		return Character.toUpperCase(permutation);
 		
 	}

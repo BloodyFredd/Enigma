@@ -5,6 +5,7 @@ public abstract class Substitutor {
 	
 	public abstract char forwardTranslation(char permutation);
     public abstract char reverseTranslation(char permutation);
+    
     public int letterToIndex(char letter){
     	
         return (int) (Character.toUpperCase(letter)) - (int)('A');
