@@ -32,7 +32,6 @@ public class EnigmaMachine {
 		List<Character> list = new ArrayList<Character>();
 
 		if(str.length() == 0) {
-			list.add(Character.MIN_VALUE);
 			return list;
 		
 		}

@@ -1,26 +1,22 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+import java.util.List;
 
 public class Translator extends Substitutor {
 	
-	private Map<Integer, Character> dictionary;
-	List<Character> permutation;
-	List<Character> revPermutation;
+	char [] permutation = new char[26];
+	char [] revPermutation = new char[26];
 	
 	Translator(List<Character> permutation){
 		
-		this.permutation = permutation;
 		int i = 0;
-		revPermutation = new ArrayList<Character>();
-		for(char tmp = 'A'; tmp != 'Z'; tmp++){
+		char c = 'A';
+		for(char tmp: permutation) {
 			
-			revPermutation.add(i, tmp);
-			System.out.println("i: " + i + ", letter: " + tmp);
+			this.permutation[i] = tmp;
+			revPermutation[this.letterToIndex(tmp)] = c;
 			i++;
-		
+			c++;
+			
 		}
 		
 	}
@@ -28,18 +24,15 @@ public class Translator extends Substitutor {
 	@Override
 	public char forwardTranslation(char permutation) {
 		
-		System.out.println(this.letterToIndex(permutation));
-		return this.permutation.get(this.letterToIndex(permutation));
+		return this.permutation[this.letterToIndex(permutation)];
 		
 	}
 
 	@Override
 	public char reverseTranslation(char permutation) {
 
-		System.out.println("!!!!"+ this.permutation.get(this.letterToIndex(permutation)));
-		//return (char)(this.permutation.get(this.letterToIndex(permutation)));
-		System.out.println(this.revPermutation.get(this.permutation.get(this.letterToIndex(permutation)) - 'A'));
-		return this.revPermutation.get(this.permutation.get(this.letterToIndex(permutation)) - 'A');
+		return this.revPermutation[this.letterToIndex(permutation)];
+		
 	}
 
 }

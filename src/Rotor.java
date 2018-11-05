@@ -19,13 +19,11 @@ public class Rotor extends Translator {
 	public int encryptedLetter(char letter){
 		
 		int rightShift = this.rightCircularShift(this.letterToIndex(letter), this.ringOffset - 1);
-		System.out.println("1Shift: " + (char)((int)'A' + rightShift));
 
 		int leftShift = this.leftCircularShift(rightShift, this.ringSetting - 1);
-		System.out.println("2Shift: " + (char)((int)'A' + leftShift));
 
 		char translated = this.forwardTranslation((char)((int)'A' + leftShift));
-		System.out.println("Trans: " + translated);
+		
 		return this.rightCircularShift(this.letterToIndex(translated), this.ringSetting - 1 - (this.ringOffset - 1));
 		
 	}
@@ -33,13 +31,10 @@ public class Rotor extends Translator {
 	public int decryptedLetter(char letter){
 		
 		int rightShift = this.rightCircularShift(this.letterToIndex(letter), this.ringOffset - 1);
-		System.out.println("11Shift: " + (char)((int)'A' + rightShift));
 
 		int leftShift = this.leftCircularShift(rightShift, this.ringSetting - 1);
-		System.out.println("22Shift: " + (char)((int)'A' + leftShift));
 
 		char translated = this.reverseTranslation((char)((int)'A' + leftShift));
-		System.out.println("3Trans: " + translated);
 
 		return this.rightCircularShift(this.letterToIndex(translated), this.ringSetting - 1 - (this.ringOffset - 1));
 		
