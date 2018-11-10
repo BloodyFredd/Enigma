@@ -10,7 +10,7 @@ public class PlugBoard extends Translator {
 	
 	PlugBoard(List<Character> configuration){
 		
-		super(configuration);
+		super(null);
 		StringBuilder st = new StringBuilder();
 		String config;
 		for(Character c: configuration){

@@ -7,9 +7,16 @@ public class EnigmaMachine {
 
 	public static void main(String[] args) {
 		
+		initEnigma();
+		
+	}
+	
+	public static void initEnigma() {
+		
 		Scanner sc = new Scanner(System.in);
-		String rot1, rot2, rot3, plug, ringSet1, ringSet2, ringSet3, ringOff1, ringOff2, ringOff3;
+		String rot1, rot2, rot3, plug, ringSet1, ringSet2, ringSet3, ringOff1, ringOff2, ringOff3, decryptWord;
 		int tmp = 0, rotor1, rotor2, rotor3;
+		PlugBoard plugBoard;
 		
 		System.out.println("Welcome to the Enigma M3.");
 		System.out.println("Please choose which three rotors you would like to use: (1-5)");
@@ -105,24 +112,127 @@ public class EnigmaMachine {
 			
 		}while(ringOff3.charAt(0) < 'A' || ringOff3.charAt(0) > 'Z' || ringOff3.length() != 1);
 		
-		Rotor rotr1 = new Rotor(6, 1, makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
-		Rotor rotr2 = new Rotor(4, 1, makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
-		Rotor rotr3 = new Rotor(22, 1, makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
-		Rotor rotr4 = new Rotor(14, 24, makeList("SOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
-		Rotor rotr5 = new Rotor(15, 9, makeList("VZBRGITYUPSDNHLXAWMJQOFECK"), 26);
+		Rotor rotors[] = new Rotor[3];
+		
+		if(rotor1 == 1) {
+			
+			rotors[0] = new Rotor(letterToIndex(ringOff1.charAt(0)), letterToIndex(ringSet1.charAt(0)), makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
+			
+		}
+		
+		else if(rotor2 == 1) {
+			
+			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
+			
+		}
+		
+		else if(rotor3 == 1) {
+			
+			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
+			
+		}
+		
+		if(rotor1 == 2) {
+			
+			rotors[0] = new Rotor(letterToIndex(ringOff1.charAt(0)), letterToIndex(ringSet1.charAt(0)), makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
+			
+		}
+		
+		else if(rotor2 == 2) {
+			
+			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
+			
+		}
+		
+		else if(rotor3 == 2) {
+			
+			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
+			
+		}
+		
+		if(rotor1 == 3) {
+			
+			rotors[0] = new Rotor(letterToIndex(ringOff1.charAt(0)), letterToIndex(ringSet1.charAt(0)), makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
+			
+		}
+		
+		else if(rotor2 == 3) {
+			
+			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
+			
+		}
+		
+		else if(rotor1 == 3) {
+			
+			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
+			
+		}
+		
+		if(rotor1 == 4) {
+			
+			rotors[0] = new Rotor(letterToIndex(ringOff1.charAt(0)), letterToIndex(ringSet1.charAt(0)), makeList("SOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			
+		}
+		
+		else if(rotor2 == 4) {
+			
+			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("SOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			
+		}
+		
+		else if(rotor3 == 4) {
+			
+			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("SOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			
+		}
+		
+		if(rotor1 == 5) {
+			
+			rotors[0] = new Rotor(letterToIndex(ringOff1.charAt(0)), letterToIndex(ringSet1.charAt(0)), makeList("VZBRGITYUPSDNHLXAWMJQOFECK"), 26);
+			
+		}
+		
+		else if(rotor2 == 5) {
+			
+			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("VZBRGITYUPSDNHLXAWMJQOFECK"), 26);
+			
+		}
+		
+		else if(rotor3 == 5) {
+			
+			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("VZBRGITYUPSDNHLXAWMJQOFECK"), 26);
+			
+		}
+		
+		do{
+			System.out.println("Please choose your plugboard:");
+			plug = sc.nextLine();
+			
+		}while(!checkPlug(plug));
+		
+		plugBoard = new PlugBoard(makeList(plug));
+		
+		/*Rotor rotr1 = new Rotor(19, 19, makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
+		Rotor rotr2 = new Rotor(3, 19, makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
+		Rotor rotr3 = new Rotor(9, 6, makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
+		Rotor rotr4 = new Rotor(14, 24, makeList("ESOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+		Rotor rotr5 = new Rotor(15, 9, makeList("VZBRGITYUPSDNHLXAWMJQOFECK"), 26);*/
 		
 		Reflector reflector = new Reflector(makeList("YRUHQSLDPXNGOKMIEBFZCWVJAT"));
 		
-		PlugBoard plugBoard = new PlugBoard(makeList(""));
+		//plugBoard = new PlugBoard(makeList("ZU HL CQ WM OA PY EB TR DN VI"));
 
-		Rotor rotors[] = new Rotor[3];
-		rotors[0] = rotr1;
-		rotors[1] = rotr2;
-		rotors[2] = rotr3;
+		/*Rotor rotors[] = new Rotor[3];
+		rotors[0] = rotr2;
+		rotors[1] = rotr5;
+		rotors[2] = rotr4;*/
+		
+		System.out.println("Please choose the word you would like to decrypt:");
+		decryptWord = sc.nextLine();
 		
 		Enigma enigmaMachine = new Enigma(rotors, reflector, plugBoard);
 		
-		System.out.println(enigmaMachine.encryptOrDecrypt(makeList("ENIGMA")));
+		System.out.println("The decrypted word: " + enigmaMachine.encryptOrDecrypt(makeList(decryptWord)));
 		
 	}
 	
@@ -140,5 +250,69 @@ public class EnigmaMachine {
 		return list;
 		
 	}
+	
+    public static int letterToIndex(char letter){
+    	
+        return (int) (Character.toUpperCase(letter)) - (int)('A');
+        
+    }
+    
+    public static boolean checkPlug(String str) {
+    	
+    	if(!checkLetrAndSpace(str) || !checkDupl(str))
+    		return false;
+    		
+    	str = str.replaceAll("\\s", "");
+    	if(str.length() > 20)
+    		return false;
+    	
+    	char[] tmpStr = str.toCharArray();
+    	for(char c: tmpStr) {
+    		
+    		if(!Character.isLetter(c) || !Character.isUpperCase(c))
+    			return false;
+    		
+    	}
+    	
+    	return true;
+    	
+    }
+    
+    public static boolean checkLetrAndSpace(String str) {
+    	
+    	int count = 0;
+    	for(int i = 0; i < str.length(); i++) {
+    		
+    		if(str.charAt(i) != ' ')
+    			count++;
+    		
+    		if((str.charAt(i) == ' ' || i == str.length() - 1 || i == 1) && (count != 2))
+    			return false;
+    		
+    		if(str.charAt(i) == ' ')
+    			count = 0;
+    		
+    	}
+    	
+    	return true;
+    	
+    }
+    
+    public static boolean checkDupl(String str) {
+    	
+    	int flag = 0;
+    	for(int i = 0; i < str.length(); i++) {
+    		
+    		int index = str.charAt(i) - 'A';
+    		if((flag & (1 << index)) > 0)
+    			return false;
+    		
+    		flag = flag | (1 << index);
+    		
+    	}
+    	
+    	return true;
+    	
+    }
 
 }

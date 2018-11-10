@@ -10,15 +10,16 @@ public class Translator extends Substitutor {
 		
 		int i = 0;
 		char c = 'A';
-		for(char tmp: permutation) {
+		if(permutation != null) {
+			for(char tmp: permutation) {
 			
 			this.permutation[i] = tmp;
 			revPermutation[this.letterToIndex(tmp)] = c;
 			i++;
 			c++;
 			
+			}
 		}
-		
 	}
 	
 	@Override
