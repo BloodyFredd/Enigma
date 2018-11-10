@@ -12,6 +12,7 @@ public class Reflector extends Translator {
 		
 	}
 	
+	// The translation of each letter.
 	@Override
 	public char forwardTranslation(char permutation) {
 
@@ -19,6 +20,7 @@ public class Reflector extends Translator {
 		
 	}
 
+	// The reverse translation of each letter.
 	@Override
 	public char reverseTranslation(char permutation) {
 

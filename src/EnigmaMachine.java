@@ -11,6 +11,7 @@ public class EnigmaMachine {
 		
 	}
 	
+	// The function that runs all the Enigma.
 	public static void initEnigma() {
 		
 		Scanner sc = new Scanner(System.in);
@@ -21,6 +22,7 @@ public class EnigmaMachine {
 		System.out.println("Welcome to the Enigma M3.");
 		System.out.println("Please choose which three rotors you would like to use: (1-5)");
 		
+		// Choose three rotors.
 		do{
 			System.out.println("Please choose the first rotor:");
 			rot1 = sc.nextLine();
@@ -74,6 +76,7 @@ public class EnigmaMachine {
 		
 		System.out.println("Please choose the ring setting: (A-Z)");
 		
+		// Choose the ring settings for each rotor.
 		do{
 			System.out.println("Please choose the ring setting for the first rotor:");
 			ringSet1 = sc.nextLine();
@@ -94,6 +97,7 @@ public class EnigmaMachine {
 		
 		System.out.println("Please choose the ring offsets: (A-Z)");
 		
+		// Choose the ring offset for each rotor.
 		do{
 			System.out.println("Please choose the ring offset for the first rotor:");
 			ringOff1 = sc.nextLine();
@@ -114,19 +118,20 @@ public class EnigmaMachine {
 		
 		Rotor rotors[] = new Rotor[3];
 		
+		// From your choice, we build the three rotors.
 		if(rotor1 == 1) {
 			
 			rotors[0] = new Rotor(letterToIndex(ringOff1.charAt(0)), letterToIndex(ringSet1.charAt(0)), makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
 			
 		}
 		
-		else if(rotor2 == 1) {
+		if(rotor2 == 1) {
 			
 			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
 			
 		}
 		
-		else if(rotor3 == 1) {
+		if(rotor3 == 1) {
 			
 			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
 			
@@ -138,13 +143,13 @@ public class EnigmaMachine {
 			
 		}
 		
-		else if(rotor2 == 2) {
+		if(rotor2 == 2) {
 			
 			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
 			
 		}
 		
-		else if(rotor3 == 2) {
+		if(rotor3 == 2) {
 			
 			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
 			
@@ -156,13 +161,13 @@ public class EnigmaMachine {
 			
 		}
 		
-		else if(rotor2 == 3) {
+		if(rotor2 == 3) {
 			
 			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
 			
 		}
 		
-		else if(rotor1 == 3) {
+		if(rotor3 == 3) {
 			
 			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
 			
@@ -170,19 +175,19 @@ public class EnigmaMachine {
 		
 		if(rotor1 == 4) {
 			
-			rotors[0] = new Rotor(letterToIndex(ringOff1.charAt(0)), letterToIndex(ringSet1.charAt(0)), makeList("SOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			rotors[0] = new Rotor(letterToIndex(ringOff1.charAt(0)), letterToIndex(ringSet1.charAt(0)), makeList("ESOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
 			
 		}
 		
-		else if(rotor2 == 4) {
+		if(rotor2 == 4) {
 			
-			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("SOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("ESOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
 			
 		}
 		
-		else if(rotor3 == 4) {
+		if(rotor3 == 4) {
 			
-			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("SOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("ESOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
 			
 		}
 		
@@ -192,18 +197,19 @@ public class EnigmaMachine {
 			
 		}
 		
-		else if(rotor2 == 5) {
+		if(rotor2 == 5) {
 			
 			rotors[1] = new Rotor(letterToIndex(ringOff2.charAt(0)), letterToIndex(ringSet2.charAt(0)), makeList("VZBRGITYUPSDNHLXAWMJQOFECK"), 26);
 			
 		}
 		
-		else if(rotor3 == 5) {
+		if(rotor3 == 5) {
 			
 			rotors[2] = new Rotor(letterToIndex(ringOff3.charAt(0)), letterToIndex(ringSet3.charAt(0)), makeList("VZBRGITYUPSDNHLXAWMJQOFECK"), 26);
 			
 		}
 		
+		// Choose the plug board with which we will work.
 		do{
 			System.out.println("Please choose your plugboard:");
 			plug = sc.nextLine();
@@ -212,30 +218,20 @@ public class EnigmaMachine {
 		
 		plugBoard = new PlugBoard(makeList(plug));
 		
-		/*Rotor rotr1 = new Rotor(19, 19, makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
-		Rotor rotr2 = new Rotor(3, 19, makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
-		Rotor rotr3 = new Rotor(9, 6, makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
-		Rotor rotr4 = new Rotor(14, 24, makeList("ESOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
-		Rotor rotr5 = new Rotor(15, 9, makeList("VZBRGITYUPSDNHLXAWMJQOFECK"), 26);*/
-		
+		// The reflector.
 		Reflector reflector = new Reflector(makeList("YRUHQSLDPXNGOKMIEBFZCWVJAT"));
-		
-		//plugBoard = new PlugBoard(makeList("ZU HL CQ WM OA PY EB TR DN VI"));
-
-		/*Rotor rotors[] = new Rotor[3];
-		rotors[0] = rotr2;
-		rotors[1] = rotr5;
-		rotors[2] = rotr4;*/
 		
 		System.out.println("Please choose the word you would like to decrypt:");
 		decryptWord = sc.nextLine();
 		
+		// Run the enigma.
 		Enigma enigmaMachine = new Enigma(rotors, reflector, plugBoard);
 		
 		System.out.println("The decrypted word: " + enigmaMachine.encryptOrDecrypt(makeList(decryptWord)));
 		
 	}
 	
+	// This function makes a list of characters from a given string.
 	public static List<Character> makeList(String str){
 		
 		List<Character> list = new ArrayList<Character>();
@@ -251,17 +247,21 @@ public class EnigmaMachine {
 		
 	}
 	
+	// This function transform a letter to an index.
     public static int letterToIndex(char letter){
     	
-        return (int) (Character.toUpperCase(letter)) - (int)('A');
+        return (int) (Character.toUpperCase(letter)) - (int)('A') + 1;
         
     }
     
+    // This function checks if the plug string is good.
     public static boolean checkPlug(String str) {
     	
+    	// Check for spaces and duplicates.
     	if(!checkLetrAndSpace(str) || !checkDupl(str))
     		return false;
     		
+    	// Remove the duplicates.
     	str = str.replaceAll("\\s", "");
     	if(str.length() > 20)
     		return false;
@@ -278,6 +278,7 @@ public class EnigmaMachine {
     	
     }
     
+    // Check the spaces and the letters..
     public static boolean checkLetrAndSpace(String str) {
     	
     	int count = 0;
@@ -298,6 +299,7 @@ public class EnigmaMachine {
     	
     }
     
+    // Check if the string have duplicate letters.
     public static boolean checkDupl(String str) {
     	
     	int flag = 0;

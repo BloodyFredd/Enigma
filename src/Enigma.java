@@ -16,10 +16,11 @@ public class Enigma extends Substitutor {
 		
 	}
 	
+	// This is the function that moves the rotors for each iteration.
 	public void moveRotors(){
-		
+		// If one of the rotors should move.
 		if(this.rotors[2].isTurnOverNotch() || this.rotors[1].isTurnOverNotch()){
-			
+			// Move the rotor if needed.
 			if(this.rotors[1].isTurnOverNotch())
 				this.rotors[0].advanceOffset();
 			this.rotors[1].advanceOffset();
@@ -30,11 +31,24 @@ public class Enigma extends Substitutor {
 		
 	}
 	
+	// The function that makes the decryption or the encryption.
 	public List<Character> encryptOrDecrypt(List<Character> word){
 		
 		List<Character> encrypted = new ArrayList<Character>();
+		StringBuilder st = new StringBuilder();
+		String config;
+		for(Character c: word){
+			
+			st.append(c);
+			
+		}
 		
-		for(char letter: word){
+		config = st.toString(); 
+		config = config.replaceAll("\\s", "");
+		
+		// A loop to decrypt each letter through the plugboard, rotors and reflector.
+		for(int i = 0; i < config.length(); i++){
+			char letter = config.charAt(i);
 			
 			this.moveRotors();
 			char translatedLetter = this.plugBoard.forwardTranslation(Character.toUpperCase(letter));

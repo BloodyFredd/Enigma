@@ -35,6 +35,7 @@ public class PlugBoard extends Translator {
 		
 	}
 	
+	// The translation of the letter in the plug.
 	@Override
 	public char forwardTranslation(char permutation) {
 		

@@ -16,6 +16,7 @@ public class Rotor extends Translator {
 		
 	}
 	
+	// The function to encrypt each letter.
 	public int encryptedLetter(char letter){
 		
 		int rightShift = this.rightCircularShift(this.letterToIndex(letter), this.ringOffset - 1);
@@ -28,6 +29,7 @@ public class Rotor extends Translator {
 		
 	}
 	
+	// The function to decrypt each letter.
 	public int decryptedLetter(char letter){
 		
 		int rightShift = this.rightCircularShift(this.letterToIndex(letter), this.ringOffset - 1);
@@ -40,12 +42,14 @@ public class Rotor extends Translator {
 		
 	}
 	
+	// If the rotor is at the end and should move.
 	public boolean isTurnOverNotch(){
 		
 		return this.ringOffset == this.notch;
 		
 	}
 	
+	// Move the offset of the rotor.
 	public void advanceOffset(){
 		
 		this.ringOffset = this.rightCircularShift(this.ringOffset, 1);
