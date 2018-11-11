@@ -7,7 +7,92 @@ public class EnigmaMachine {
 
 	public static void main(String[] args) {
 		
+		// The real enigma.
 		initEnigma();
+		
+		// The enigma for task 6.
+		/*Scanner sc = new Scanner(System.in);
+		System.out.println();
+		String str = sc.nextLine();
+		initSixEnigma();*/
+		
+	}
+	
+	public static void initSixEnigma() {
+		
+		Rotor rotors[] = new Rotor[3];
+		
+		for(int i = 0; i < 200; i++) { // Plugboard empty, rotors - 1,2,3.
+			
+			rotors[0] = new Rotor(6, 1, makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
+			rotors[1] = new Rotor(4, 1, makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
+			rotors[2] = new Rotor(22, 1, makeList("BDFHJLCPRTXVZNYEIWGAKMUSQO"), 22);
+			
+			PlugBoard plugBoard = new PlugBoard(makeList(""));
+			
+			// The reflector.
+			Reflector reflector = new Reflector(makeList("YRUHQSLDPXNGOKMIEBFZCWVJAT"));
+			
+			// Run the enigma.
+			Enigma enigmaMachine = new Enigma(rotors, reflector, plugBoard);
+			
+			enigmaMachine.encryptOrDecrypt(makeList("ENIGMA"));
+			
+		}
+		
+		for(int i = 0; i < 200; i++) { // Plugboard empty, rotors - 1,2,4.
+			
+			rotors[0] = new Rotor(19, 3, makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
+			rotors[1] = new Rotor(4, 8, makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
+			rotors[2] = new Rotor(19, 6, makeList("ESOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			
+			PlugBoard plugBoard = new PlugBoard(makeList(""));
+			
+			// The reflector.
+			Reflector reflector = new Reflector(makeList("YRUHQSLDPXNGOKMIEBFZCWVJAT"));
+			
+			// Run the enigma.
+			Enigma enigmaMachine = new Enigma(rotors, reflector, plugBoard);
+			
+			enigmaMachine.encryptOrDecrypt(makeList("PEACE"));
+			
+		}
+		
+		for(int i = 0; i < 200; i++) { // Plugboard not empty, rotors - 1,2,4.
+			
+			rotors[0] = new Rotor(19, 3, makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 17);
+			rotors[1] = new Rotor(4, 8, makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
+			rotors[2] = new Rotor(19, 6, makeList("ESOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			
+			PlugBoard plugBoard = new PlugBoard(makeList("AT CE RL"));
+			
+			// The reflector.
+			Reflector reflector = new Reflector(makeList("YRUHQSLDPXNGOKMIEBFZCWVJAT"));
+			
+			// Run the enigma.
+			Enigma enigmaMachine = new Enigma(rotors, reflector, plugBoard);
+			
+			enigmaMachine.encryptOrDecrypt(makeList("PEACE"));
+			
+		}
+		
+		for(int i = 0; i < 200; i++) { // Plugboard not empty, rotors - 2,5,4.
+			
+			rotors[0] = new Rotor(3, 19, makeList("AJDKSIRUXBLHWTMCQGZNPYFVOE"), 5);
+			rotors[1] = new Rotor(15, 9, makeList("EKMFLGDQVZNTOWYHXUSPAIBRCJ"), 26);
+			rotors[2] = new Rotor(14, 24, makeList("ESOVPZJAYQUIRHXLNFTGKDCMWB"), 10);
+			
+			PlugBoard plugBoard = new PlugBoard(makeList("ZU HL CQ WM OA PY EB TR DN VI"));
+			
+			// The reflector.
+			Reflector reflector = new Reflector(makeList("YRUHQSLDPXNGOKMIEBFZCWVJAT"));
+			
+			// Run the enigma.
+			Enigma enigmaMachine = new Enigma(rotors, reflector, plugBoard);
+			
+			enigmaMachine.encryptOrDecrypt(makeList("DOR"));
+			
+		}
 		
 	}
 	
@@ -228,6 +313,7 @@ public class EnigmaMachine {
 		Enigma enigmaMachine = new Enigma(rotors, reflector, plugBoard);
 		
 		System.out.println("The decrypted word: " + enigmaMachine.encryptOrDecrypt(makeList(decryptWord)));
+		System.out.println("Thank you for playing.");
 		
 	}
 	
